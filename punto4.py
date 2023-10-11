@@ -56,8 +56,8 @@ class PersonaDao:
         self._conn.close()
 
 
-#tabla1 = Tabla()
-#tabla1.creartabla()
+tabla1 = Tabla()
+tabla1.creartabla()
      
 usuarioDao = PersonaDao()
 usuarionuevo = Persona(1,"lucia","lucia123","1234")
