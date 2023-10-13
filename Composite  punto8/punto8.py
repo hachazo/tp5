@@ -16,14 +16,14 @@ class Component(ABC):
         return False
     
     @abstractmethod
-    def mostrar(self) -> str:
+    def print(self):
         pass
     @abstractmethod
     def crear(self) ->bool:
         pass
 
 class File(Component):
-    def mostrar(self) -> str:
+    def print(self) -> str:
         return self._name
     
     def crear(self)-> bool:
@@ -43,22 +43,30 @@ class Folder(Component):
     def remove(self,component):
         self._children.remove(component)
     
-    def print(self):
+    def print(self) -> str:
         result=self._name
         for child in self._children:
             result+="\t"+child.print()
             result+="\n"
         return result
     
+    def crear(self)-> bool:
+        open(self._name, "x") #
+        
 def client_file(component: Component):
-    print(component.mostrar())
+    print(component.print())
 
 def client_file_archive(component1: Component, component2: Component):
     if component1.is_folder():
         component1.add(component2)
-    print(component1.mostrar())
+    print(component1.print())
     
 file1 = File("file_1.txt")
 client_file(file1)
 
-carpeta1=Folder(File("file_2.txt"))
+carpeta1= Folder("Carpeta1")
+carpeta1.add(File("file_2.txt"))
+carpeta1.add(File("file_3.txt"))
+carpeta1.add(File("file_4.txt"))
+
+client_file_archive(carpeta1,file1)
