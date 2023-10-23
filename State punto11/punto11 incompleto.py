@@ -1,10 +1,11 @@
-from __future__ import annotationssu
+#from __future__ import annotationssu
 from abc import ABC, abstractmethod
 
 class Caja_banco:
-    def __init__(self):
+    def __init__(self,cajero):
         self._estado = None
-        
+        self._nombre = cajero
+
     def set_estado(self, estado):
         self._estado = estado
         
